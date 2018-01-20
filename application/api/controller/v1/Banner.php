@@ -3,6 +3,7 @@
 namespace app\api\controller\v1;
 
 use app\api\controller\BaseController;
+use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\TestValidate;
 use think\Validate;
 
@@ -25,10 +26,10 @@ class Banner extends BaseController
 //        var_dump($result);
 //        var_dump($validate->getError());
 
-        $valitate = new TestValidate();
-        $result = $valitate->batch()->check($data);
-        var_dump($valitate->getError());
-
+//        $valitate = new TestValidate();
+//        $result = $valitate->batch()->check($data);
+//        var_dump($valitate->getError());
+        (new IDMustBePositiveInt())->goCheck();
 //        var_dump($id);
     }
 }
