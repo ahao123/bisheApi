@@ -4,12 +4,12 @@ namespace app\api\controller\v1;
 
 use app\api\controller\BaseController;
 
-class Banner extends BaseController{
-
-
-    public function index(){
-
-        var_dump("hello");
-        return;
+class Banner extends BaseController
+{
+    /**
+     * @param $id
+     */
+    public function getBanner($id){
+        var_dump($id);
     }
 }

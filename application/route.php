@@ -6,9 +6,9 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
+// | Author: liu21st <liu21st@.cgmailom>
 // +----------------------------------------------------------------------
 
 use think\Route;
 
-Route::rule('hello','index/index/test');
+Route::rule('banner/:id','api/v1.Banner/getBanner');
