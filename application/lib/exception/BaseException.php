@@ -24,11 +24,15 @@ class BaseException extends Exception
         if(!is_array($param) ){
             return ;
         }
-        if(array_key_exists('msg',$param) ){
-            $this->code = 405;
+        if(array_key_exists('code',$param) ){
+            $this->code = $param['code'];
         }
-
-//        var_dump($param);
+        if(array_key_exists('msg',$param)){
+            $this->msg = $param['msg'];
+        }
+        if(array_key_exists('errorCode',$param)){
+            $this->errorCode = $param['errorCode'];
+        }
 //        parent::__construct($message, $code, $previous);
     }
 }
