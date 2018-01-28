@@ -8,7 +8,9 @@
 
 namespace app\api\validate;
 
+use app\lib\exception\BaseException;
 use app\lib\exception\ParamException;
+use think\Exception;
 use think\Request;
 use think\Validate;
 
@@ -17,15 +19,18 @@ class BaseValidate extends Validate
     public function goCheck(){
         $request = Request::instance();
         $param = $request->param();
-        $result = $this->batch()->check($param);
+        $result = $this->check($param);
         if(!$result){
-//            $error = $this->error;
-//            throw new Exception($error);
-            $e = new ParamException([
-                'msg' => $this->error,
-            ]);
-            //$e->msg = $this->error;
-            throw $e;
+            $error = $this->error;
+//            var_dump($error);
+            throw new Exception($error);
+//            throw new BaseException([
+//                'msg' => $this->error,
+//            ]);
+//            $e = new ParamException([
+//                'msg' => $this->error,
+//            ]);
+//            throw $e;
         }
         else{
             return true;

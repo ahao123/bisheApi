@@ -14,10 +14,10 @@ class Banner extends BaseController
      */
     public function getBanner($id){
         //验证器
-        $data = [
-            'name' => 'sdassdaasdasdas',
-            'id' => $id
-        ];
+//        $data = [
+//            'name' => 'sdassdaasdasdas',
+//            'id' => $id
+//        ];
 //        $validate = new Validate([
 //            'name'=>'require|max:10',
 //            'id' => 'email'
@@ -30,6 +30,6 @@ class Banner extends BaseController
 //        $result = $valitate->batch()->check($data);
 //        var_dump($valitate->getError());
         (new IDMustBePositiveInt())->goCheck();
-//        var_dump($id);
+
     }
 }
