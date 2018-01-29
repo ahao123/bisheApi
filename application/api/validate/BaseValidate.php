@@ -17,7 +17,7 @@ class BaseValidate extends Validate
     public function goCheck(){
         $request = Request::instance();
         $param = $request->param();
-        $result = $this->check($param);
+        $result = $this->batch()->check($param);
         if(!$result){
             $error = $this->error;
 //            var_dump($error);
