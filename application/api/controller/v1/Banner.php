@@ -6,6 +6,7 @@ use app\api\controller\BaseController;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\TestValidate;
 use think\Validate;
+use app\api\model\Banner as BannerModel;
 
 class Banner extends BaseController
 {
@@ -30,6 +31,7 @@ class Banner extends BaseController
 //        $result = $valitate->batch()->check($data);
 //        var_dump($valitate->getError());
         (new IDMustBePositiveInt())->goCheck();
-
+        $info = BannerModel::find(1);
+        var_dump($info);
     }
 }
