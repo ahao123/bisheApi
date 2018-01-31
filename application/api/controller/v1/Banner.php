@@ -37,6 +37,5 @@ class Banner extends BaseController
         $info = BannerModel::find(1);
 //        $info = BannerModel::getBannerByID($id);
         return $info;
-//        var_dump($info);
     }
 }
