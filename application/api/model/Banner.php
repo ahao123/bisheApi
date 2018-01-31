@@ -12,7 +12,15 @@ use think\Model;
 
 class Banner extends Model
 {
+    protected $hidden = ['id','create_time'];
+
     public function items(){
-        $this->hasMany('BannerItem','banner_id','id');
+        return $this->hasMany('BannerItem','banner_id','id');
+    }
+
+    public static function getBannerByID($id){
+        $info = self::with('items')->find($id);
+
+        return $info;
     }
 }
