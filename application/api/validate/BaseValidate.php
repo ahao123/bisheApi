@@ -20,8 +20,6 @@ class BaseValidate extends Validate
         $result = $this->batch()->check($param);
         if(!$result){
             $error = $this->error;
-//            var_dump($error);
-
             $e = new ParamException([
                 'msg' => $this->error,
             ]);
