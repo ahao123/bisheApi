@@ -5,6 +5,7 @@ namespace app\api\controller\v1;
 use app\api\controller\BaseController;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\TestValidate;
+use app\lib\exception\ParamException;
 use think\Db;
 use think\Validate;
 use app\api\model\Banner as BannerModel;
@@ -32,10 +33,12 @@ class Banner extends BaseController
 //        $result = $valitate->batch()->check($data);
 //        var_dump($valitate->getError());
         (new IDMustBePositiveInt())->goCheck();
-        $result = Db::table('bs_banner')->select();
-//        var_dump($result);
-        $info = BannerModel::find(1);
-//        $info = BannerModel::getBannerByID($id);
+
+        $info = BannerModel::getBannerByID($id);
+        if(!$info){
+            throw new ParamException([]);
+        }
+//        $c = config('setting.img_prefix');
         return $info;
     }
 }

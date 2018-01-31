@@ -10,9 +10,9 @@ namespace app\api\model;
 
 use think\Model;
 
-class Banner extends Model
+class Banner extends BaseModel
 {
-    protected $hidden = ['id','create_time'];
+    protected $hidden = ['id','create_time','update_time'];
 
     public function items(){
         return $this->hasMany('BannerItem','banner_id','id');

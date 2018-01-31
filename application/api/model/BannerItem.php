@@ -10,7 +10,12 @@ namespace app\api\model;
 
 use think\Model;
 
-class BannerItem extends Model
+class BannerItem extends BaseModel
 {
+    protected $hidden = ['create_time','update_time'];
+
+    public function getImgAttr($value,$data){
+        return config('setting.img_prefix').$value;
+    }
 
 }
