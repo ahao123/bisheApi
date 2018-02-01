@@ -8,7 +8,6 @@
 
 namespace app\api\model;
 
-use think\Model;
 
 class Banner extends BaseModel
 {
@@ -20,7 +19,6 @@ class Banner extends BaseModel
 
     public static function getBannerByID($id){
         $info = self::with('items')->find($id);
-
         return $info;
     }
 }
