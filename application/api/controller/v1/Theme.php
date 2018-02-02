@@ -14,6 +14,6 @@ use think\Controller;
 class Theme extends Controller
 {
     public function getTheme($ids){
-
+        
     }
 }
