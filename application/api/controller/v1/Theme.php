@@ -11,6 +11,7 @@ namespace app\api\controller\v1;
 use app\api\controller\BaseController;
 use app\api\validate\IDCollection;
 use app\api\model\Theme as ThemeModel;
+use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\DataException;
 
 class Theme extends BaseController
@@ -24,6 +25,14 @@ class Theme extends BaseController
             throw new DataException([]);
         }
         return $result;
+    }
 
+    public function getComplexOne($id){
+        ( new IDMustBePositiveInt() )->goCheck();
+        $result = ThemeModel::getThemeProduct($id);
+        if(!$result){
+            throw new DataException([]);
+        }
+        return $result;
     }
 }

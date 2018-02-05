@@ -15,4 +15,6 @@ use think\Route;
 //动态版本号
 Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 
+//http://bisheapi.project.com/api/v1/theme/ids/1
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
+Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
