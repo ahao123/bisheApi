@@ -14,7 +14,7 @@ use app\api\model\Theme as ThemeModel;
 use app\api\validate\IDMustBePositiveInt;
 use app\lib\exception\DataException;
 
-class Theme extends BaseController
+class Theme
 {
     public function getSimpleList($ids=''){
         ( new IDCollection() )->goCheck();

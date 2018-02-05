@@ -11,7 +11,7 @@ use think\Db;
 use think\Validate;
 use app\api\model\Banner as BannerModel;
 
-class Banner extends BaseController
+class Banner
 {
     /**
      * @param $id
