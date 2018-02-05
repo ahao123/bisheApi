@@ -5,6 +5,7 @@ namespace app\api\controller\v1;
 use app\api\controller\BaseController;
 use app\api\validate\IDMustBePositiveInt;
 use app\api\validate\TestValidate;
+use app\lib\exception\DataException;
 use app\lib\exception\ParamException;
 use think\Db;
 use think\Validate;
@@ -36,7 +37,7 @@ class Banner extends BaseController
 
         $info = BannerModel::getBannerByID($id);
         if(!$info){
-            throw new ParamException([]);
+            throw new DataException([]);
         }
 //        $c = config('setting.img_prefix');
         return $info;
