@@ -18,3 +18,7 @@ Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 //http://bisheapi.project.com/api/v1/theme/ids/1
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
+
+Route::get('api/:version/product/by_category','api/:version.Product/getAllInGategory');
+Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id' => '\d+']);//获取商品详情
+Route::get('api/:version/product/recent','api/:version.Product/getRecent');
