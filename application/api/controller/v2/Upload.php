@@ -16,7 +16,7 @@ class Upload
         $files = json_decode($params,true);
 
 
-        move_uploaded_file($files['tmp_name'],'./uploads/'.$files['name']);
+        move_uploaded_file($files['tmp_name'],'../uploads/'.$files['name']);
         echo "success";
 
     }
