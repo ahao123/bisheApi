@@ -20,7 +20,7 @@ class Upload
         $files = $paramsArr['file'];
 
         move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
-//        echo "success";
-        var_dump($params);
+        echo "success";
+//        var_dump($params);
     }
 }
