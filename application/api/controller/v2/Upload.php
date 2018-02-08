@@ -14,10 +14,10 @@ use think\Request;
 class Upload
 {
     public function upload(){
-        $params = $_POST;
-        var_dump($params);
-//        $files = json_decode($params);
-//        var_dump($files);
+        $params = $_POST['file'];
+        $files = json_decode($params);
+
+        var_dump($files);
 //        move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
 //        echo "success";
 //        var_dump($params);
