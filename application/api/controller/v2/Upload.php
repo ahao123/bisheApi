@@ -15,9 +15,9 @@ class Upload
 {
     public function upload(){
         $params = Request::instance()->param('file');
-
+        var_dump($params);
         $files = json_decode($params);
-        var_dump($files);
+//        var_dump($files);
         move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
 //        echo "success";
 //        var_dump($params);
