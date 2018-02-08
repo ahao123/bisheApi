@@ -14,8 +14,10 @@ use think\Request;
 class Upload
 {
     public function upload(){
-        $files = Request::instance()->post('file');
+        $params = Request::instance()->param();
+        $paramsArr = json_decode($params);
+
 //        move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
-        echo json_encode($files);
+        echo json_encode($paramsArr);
     }
 }
