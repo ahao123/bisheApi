@@ -15,10 +15,12 @@ class Upload
 {
     public function upload(){
         $params = Request::instance()->param();
-        $paramsArr = json_decode($params);
-        $files = $paramsArr['file'];
 
-        move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
-        echo "success";
+//        $paramsArr = json_decode($params);
+//        $files = $paramsArr['file'];
+
+//        move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
+//        echo "success";
+        var_dump($params);
     }
 }
