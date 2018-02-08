@@ -9,11 +9,13 @@
 namespace app\api\controller\v2;
 
 
+use think\Request;
+
 class Upload
 {
     public function upload(){
-
-        echo 2;
-
+        $files = Request::instance()->post('file');
+        move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
+//        var_dump($files);
     }
 }
