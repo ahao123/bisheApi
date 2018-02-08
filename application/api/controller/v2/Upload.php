@@ -14,7 +14,7 @@ use think\Request;
 class Upload
 {
     public function upload(){
-        $params = Request::instance()->param();
+        $params = Request::instance()->param('file');
 
 //        $paramsArr = json_decode($params);
 //        $files = $paramsArr['file'];
