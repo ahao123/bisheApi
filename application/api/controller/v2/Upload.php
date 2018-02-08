@@ -18,9 +18,9 @@ class Upload
 
         $paramsArr = json_decode($params);
         $files = $paramsArr['file'];
-
+        var_dump($files);
         move_uploaded_file($files['tmp_name'],'./upload/'.$files['name']);
-        echo "success";
+//        echo "success";
 //        var_dump($params);
     }
 }
