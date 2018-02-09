@@ -9,6 +9,8 @@
 namespace app\api\controller\v2;
 
 
+use think\Request;
+
 class Upload
 {
     public function upload(){
@@ -18,8 +20,12 @@ class Upload
 //        echo "success";
 //        $files = $_FILES['file_head'];
 //        move_uploaded_file($_FILES['file_head']['tmp_name'],'./upload/'.$_FILES['file_head']['name']);
+        if(Request::instance()->isPost()){
+            $params = $_POST['test'];
+            var_dump($params);
+        }else{
+            echo "not post";
+        }
 
-        $params = $_POST['test'];
-        var_dump($params);
     }
 }
