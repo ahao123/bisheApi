@@ -18,5 +18,6 @@ class Upload
 //        echo "success";
 //        $files = $_FILES['file_head'];
 //        move_uploaded_file($_FILES['file_head']['tmp_name'],'./upload/'.$_FILES['file_head']['name']);
+        echo 4;
     }
 }
