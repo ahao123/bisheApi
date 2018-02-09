@@ -17,7 +17,7 @@ class Upload
         if(Request::instance()->isPost() ){
             $title = $_POST['title'];
             $file = $_FILES['file_head'];
-            move_uploaded_file($file['tmp_name'],'./upload/'.$file['name']);
+            move_uploaded_file($file['tmp_name'],'./upload/image/'.$file['name']);
             echo "success";
         }else{
             echo "not post";
