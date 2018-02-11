@@ -25,7 +25,7 @@ class Upload
                 mkdir($filePath.$date,0777,true);
 
             }
-            exit();
+//            exit();
 //            list($usec, $sec) = explode(" ", microtime());
             $fileName = md5($file['name']);
 
