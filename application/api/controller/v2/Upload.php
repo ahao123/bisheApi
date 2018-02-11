@@ -37,7 +37,7 @@ class Upload
             }
             $info->head_img = $filePath2;
             $info->save();
-            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
+//            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
 
             echo "success";
         }else{
