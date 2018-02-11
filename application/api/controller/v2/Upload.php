@@ -32,10 +32,11 @@ class Upload
             //插入数据库
             $filePath2 = $date."/".$fileName;
             $info = ThemeModel::get($id);
-            var_dump($info);exit();
+            var_dump($info);
             if(!$info){
                 return "error";
             }
+            exit();
             $info->head_img = $filePath2;
             $info->save();
 //            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
