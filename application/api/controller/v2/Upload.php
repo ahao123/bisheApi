@@ -17,6 +17,7 @@ class Upload
         if(Request::instance()->isPost() ){
             $id = $_POST['id'];
             $file = $_FILES['file_head'];
+
             $filePath = './upload/image/';
             $date = date('Ymd');
 //            echo $filePath.$date;
@@ -30,7 +31,7 @@ class Upload
             $fileName = md5($file['name']);
 
             //插入数据库
-            $filePath2 = $date."/".$fileName;
+            $filePath2 = "/upload/image/".$date."/".$fileName;
             $info = ThemeModel::get($id);
             var_dump($info);
             if(!$info){
