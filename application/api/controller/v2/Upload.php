@@ -61,7 +61,7 @@ class Upload
         $fileName = md5($file['name']);
         $date = date('Ymd');
         $fileType = $file['type'];
-        $fileTypeArr = explode(',',$fileType);
+        $fileTypeArr = explode('/',$fileType);
         //插入数据库
         $filePath2 = "/upload/image/".$date."/".$fileName."/".array_pop($fileTypeArr);
         $themeModel = new ThemeModel;
