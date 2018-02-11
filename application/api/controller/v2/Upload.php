@@ -37,8 +37,8 @@ class Upload
                 return "error";
             }
 
-            $info->head_img = $filePath2;
-            $info->save();
+
+            $info->save(['head_img'=>$filePath2]);
             exit();
 //            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
 
