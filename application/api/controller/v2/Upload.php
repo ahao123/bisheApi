@@ -22,7 +22,7 @@ class Upload
             echo $filePath.$date;
             if(!is_dir($filePath.$date)){
                 echo $filePath.$date;
-                //mkdir($filePath.$date,0777,true);
+                mkdir($filePath.$date,0777,true);
 
             }
             exit();
