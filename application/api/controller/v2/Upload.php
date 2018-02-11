@@ -21,7 +21,7 @@ class Upload
             $date = date('Ymd');
 
             if(!is_dir($filePath.$date)){
-                mkdir($filePath.$date);
+                mkdir($filePath.$date,0777,true);
             }
 //            list($usec, $sec) = explode(" ", microtime());
             $fileName = md5($file['name']);
