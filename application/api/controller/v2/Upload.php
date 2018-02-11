@@ -13,43 +13,62 @@ use app\api\model\Theme as ThemeModel;
 
 class Upload
 {
-    public function upload(){
+    public function upload($type = 0){
         if(Request::instance()->isPost() ){
+            $count = 1;$result="true";
             $id = $_POST['id'];
-            $file = $_FILES['file_head'];
-
             $filePath = './upload/image/';
             $date = date('Ymd');
-//            echo $filePath.$date;
+            switch ($type){
+                case 0:
+                    exit();
+                    break;
+                case 1:
+                    if(isset($_FILES['file_head']) && !empty($_FILES['file_head']) ){
+                        $file = $_FILES['file_head'];
+                        $fileName = md5($file['name']);
+                        $result = $this->uploadHeadImage($id,$file);
+                    }else{
+                        $count = 0;
+                    }
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    $count = 0;
+            }
+            if($count == 0 || $result == "error") {
+                echo "error";
+                exit();
+            }
+
             if(!is_dir($filePath.$date)){
-                echo $filePath.$date;
                 mkdir($filePath.$date,0777,true);
-
             }
-//            exit();
-//            list($usec, $sec) = explode(" ", microtime());
-            $fileName = md5($file['name']);
-
-            //插入数据库
-            $filePath2 = "/upload/image/".$date."/".$fileName;
-            $info = ThemeModel::get($id);
-            var_dump($info);
-            if(!$info){
-                return "error";
-            }
-
-            $themeModel = new ThemeModel;
-            $ret = $themeModel->where('id',$id)
-                ->update(['head_img'=>$filePath2]);
-//            $info->save(['head_img'=>$filePath2]);
-            var_dump($ret);
-//            exit();
-//            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
-
-            echo "success";
+            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
+            echo $result;
         }else{
             echo "not post";
         }
-
+    }
+    //上传head_image
+    private function uploadHeadImage($id,$file){
+        $info = ThemeModel::get($id);
+        if(!$info){
+            return "error";
+        }
+        $fileName = md5($file['name']);
+        $date = date('Ymd');
+        //插入数据库
+        $filePath2 = "/upload/image/".$date."/".$fileName;
+        $themeModel = new ThemeModel;
+        $ret = $themeModel->where('id',$id)
+            ->update(['head_img'=>$filePath2]);
+        if(!$ret){
+            return "error";
+        }else{
+            return $filePath2;
+        }
     }
 }

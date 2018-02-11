@@ -12,7 +12,7 @@
 use think\Route;
 
 //Route::rule('banner/:id','api/v1.Banner/getBanner');
-Route::rule('api/:version/upload','api/:version.Upload/upload');
+Route::rule('api/:version/upload/:type','api/:version.Upload/upload');
 
 //动态版本号
 Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
