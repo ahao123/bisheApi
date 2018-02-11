@@ -37,8 +37,11 @@ class Upload
                 return "error";
             }
 
-
+            $themeModel = new ThemeModel;
+            $ret = $themeModel->where('id',$id)
+                ->update(['head_img'=>$filePath2]);
 //            $info->save(['head_img'=>$filePath2]);
+            var_dump($ret);
 //            exit();
 //            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
 
