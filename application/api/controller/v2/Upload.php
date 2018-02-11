@@ -61,7 +61,7 @@ class Upload
         $fileName = md5($file['name']);
         $date = date('Ymd');
         //插入数据库
-        $filePath2 = "/upload/image/".$date."/".$fileName;
+        $filePath2 = "/upload/image/".$date."/".$fileName."/".$file['type'];
         $themeModel = new ThemeModel;
         $ret = $themeModel->where('id',$id)
             ->update(['head_img'=>$filePath2]);
