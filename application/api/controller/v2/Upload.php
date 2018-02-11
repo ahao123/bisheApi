@@ -63,7 +63,7 @@ class Upload
         $fileType = $file['type'];
         $fileTypeArr = explode('/',$fileType);
         //插入数据库
-        $filePath2 = "/upload/image/".$date."/".$fileName."/".array_pop($fileTypeArr);
+        $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
         $themeModel = new ThemeModel;
         $ret = $themeModel->where('id',$id)
             ->update(['head_img'=>$filePath2]);
