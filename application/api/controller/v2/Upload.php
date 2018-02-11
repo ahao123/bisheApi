@@ -33,7 +33,13 @@ class Upload
                     }
                     break;
                 case 2:
-
+                    if(isset($_FILES['file']) && !empty($_FILES['file']) ){
+                        $file = $_FILES['file'];
+                        $fileName = md5($file['name']);
+                        $result = $this->uploadHeadImage($id,$file,2);
+                    }else {
+                        $count = 0;
+                    }
                     break;
                 default:
                     $count = 0;
@@ -53,7 +59,7 @@ class Upload
         }
     }
     //上传head_image
-    private function uploadHeadImage($id,$file){
+    private function uploadHeadImage($id,$file,$type=1){
         $info = ThemeModel::get($id);
         if(!$info){
             return "error";
@@ -65,12 +71,19 @@ class Upload
         //插入数据库
         $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
         $themeModel = new ThemeModel;
-        $ret = $themeModel->where('id',$id)
-            ->update(['head_img'=>$filePath2]);
+        if($type == 1){
+            $ret = $themeModel->where('id',$id)
+                ->update(['head_img'=>$filePath2]);
+        }else if($type = 2){
+            $ret = $themeModel->where('id',$id)
+                ->update(['img'=>$filePath2]);
+        }
         if(!$ret){
             return "error";
         }else{
             return $filePath2;
         }
     }
+
+
 }
