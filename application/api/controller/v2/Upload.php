@@ -38,8 +38,8 @@ class Upload
             }
 
 
-            $info->save(['head_img'=>$filePath2]);
-            exit();
+//            $info->save(['head_img'=>$filePath2]);
+//            exit();
 //            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
 
             echo "success";
