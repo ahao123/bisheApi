@@ -32,6 +32,7 @@ class Upload
             //插入数据库
             $filePath2 = $date."/".$fileName;
             $info = ThemeModel::get($id);
+            var_dump($info);exit();
             if(!$info){
                 return "error";
             }
