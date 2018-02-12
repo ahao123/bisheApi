@@ -17,7 +17,7 @@ class Theme extends BaseModel
         return $this->belongsToMany('Product','theme_product','product_id','theme_id');
     }
 
-    //获取主题的
+    //获取主题的商品
     public static function getThemeProduct($id){
         $info = self::with('products')->find($id);
         return $info;

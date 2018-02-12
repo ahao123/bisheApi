@@ -16,6 +16,7 @@ use app\lib\exception\DataException;
 
 class Theme
 {
+    //主题列表
     public function getSimpleList($ids=''){
         ( new IDCollection() )->goCheck();
         $ids = explode(',',$ids);
@@ -26,7 +27,7 @@ class Theme
         }
         return $result;
     }
-
+    //主题详情
     public function getComplexOne($id){
         ( new IDMustBePositiveInt() )->goCheck();
         $result = ThemeModel::getThemeProduct($id);
