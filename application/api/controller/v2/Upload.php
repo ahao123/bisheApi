@@ -52,7 +52,7 @@ class Upload
             if(!is_dir($filePath.$date)){
                 mkdir($filePath.$date,0777,true);
             }
-            move_uploaded_file($file['tmp_name'],$filePath.$date."/".$fileName);
+            move_uploaded_file($file['tmp_name'],$result);
             echo $result;
         }else{
             echo "not post";
