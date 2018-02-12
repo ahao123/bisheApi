@@ -13,9 +13,9 @@ class Product extends BaseModel
 {
     protected $hidden = ['delete_time','update_time','create_time','pivot'];
 
-
     public static function getMostRecent($count){
         return self::limit($count)
+            ->where(['is_new'=>1])
             ->order('create_time desc')
             ->select();
     }

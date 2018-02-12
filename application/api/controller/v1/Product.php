@@ -15,7 +15,8 @@ use app\lib\exception\DataException;
 
 class Product
 {
-    public function getRecent($count = 15){
+    //最近新品
+    public function getRecent($count = 6){
         ( new Count() )->goCheck();
         $products = ProductModel::getMostRecent($count);
         if($products->isEmpty()){
@@ -39,7 +40,7 @@ class Product
         ( new IDMustBePositiveInt() )->goCheck();
         $product = ProductModel::getProductDetail($id);
         if(!$product){
-            throw new ProductException();
+            throw new DataException();
         }
         return $product;
     }

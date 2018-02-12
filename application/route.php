@@ -21,6 +21,8 @@ Route::get('api/:version/banner/:id','api/:version.Banner/getBanner');
 Route::get('api/:version/theme','api/:version.Theme/getSimpleList');
 Route::get('api/:version/theme/:id','api/:version.Theme/getComplexOne');
 
-Route::get('api/:version/product/by_category','api/:version.Product/getAllInGategory');
+Route::get('api/:version/product/by_category','api/:version.Product/getAllInGategory');//获取分类
 Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id' => '\d+']);//获取商品详情
+Route::get('api/:version/product/recent','api/:version.Product/getRecent');//最近新品
+
 Route::get('api/:version/product/recent','api/:version.Product/getRecent');
