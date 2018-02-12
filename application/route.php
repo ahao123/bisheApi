@@ -25,4 +25,4 @@ Route::get('api/:version/product/by_category','api/:version.Product/getAllInGate
 Route::get('api/:version/product/:id','api/:version.Product/getOne',[],['id' => '\d+']);//获取商品详情
 Route::get('api/:version/product/recent','api/:version.Product/getRecent');//最近新品
 
-Route::get('api/:version/product/recent','api/:version.Product/getRecent');
+Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
