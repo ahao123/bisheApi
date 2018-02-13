@@ -16,6 +16,7 @@ class Upload
 {
     public function upload($type = 0){
         if(Request::instance()->isPost() ){
+            header("Access-Control-Allow-Origin: *");
             $count = 1;$result="true";
             $id = $_POST['id'];
             $filePath = './upload/image/';
@@ -46,7 +47,11 @@ class Upload
                     if(isset($_FILES['file']) && !empty($_FILES['file']) ){
                         $file = $_FILES['file'];
                         $fileName = md5(getRandChar(3).$file['name']);
-                        $result = $this->uploadProductImage($id,$file,$fileName);
+                        if(isset($_POST['type']) && $_POST['type'] == "add"){
+                            $result = $this->uploadProductImage($id,$file,$fileName,'add');
+                        }else{
+                            $result = $this->uploadProductImage($id,$file,$fileName);
+                        }
                     }else{
                         $count = 0;
                     }
@@ -95,22 +100,26 @@ class Upload
         }
     }
     //上传商品图片
-    private function uploadProductImage($id,$file,$fileName){
-        $info = ProductModel::get($id);
-        if(!$info){
-            return "error";
-        }
+    private function uploadProductImage($id,$file,$fileName,$type="edit"){
         $date = date('Ymd');
         $fileType = $file['type'];
         $fileTypeArr = explode('/',$fileType);
         //插入数据库
         $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
-        $productModel = new ProductModel;
-        $ret = $productModel->where('id',$id)
-            ->update(['main_img_url'=>$filePath2]);
-        if(!$ret){
-            return "error";
+
+        if($type == "edit"){
+            $info = ProductModel::get($id);
+            if(!$info){
+                return "error";
+            }
+            $productModel = new ProductModel;
+            $ret = $productModel->where('id',$id)
+                ->update(['main_img_url'=>$filePath2]);
+            if(!$ret){
+                return "error";
+            }
         }
+
         return $filePath2;
     }
 
