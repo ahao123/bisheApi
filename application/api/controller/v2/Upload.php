@@ -10,6 +10,7 @@ namespace app\api\controller\v2;
 
 use think\Request;
 use app\api\model\Theme as ThemeModel;
+use app\api\model\Product as ProductModel;
 
 class Upload
 {
@@ -26,7 +27,7 @@ class Upload
                 case 1:
                     if(isset($_FILES['file_head']) && !empty($_FILES['file_head']) ){
                         $file = $_FILES['file_head'];
-                        $fileName = md5($file['name']);
+                        $fileName = md5(getRandChar(3).$file['name']);
                         $result = $this->uploadHeadImage($id,$file);
                     }else{
                         $count = 0;
@@ -35,9 +36,18 @@ class Upload
                 case 2:
                     if(isset($_FILES['file']) && !empty($_FILES['file']) ){
                         $file = $_FILES['file'];
-                        $fileName = md5($file['name']);
-                        $result = $this->uploadHeadImage($id,$file,2);
+                        $fileName = md5(getRandChar(3).$file['name']);
+                        $result = $this->uploadHeadImage($id,$file,$fileName,2);
                     }else {
+                        $count = 0;
+                    }
+                    break;
+                case 3:
+                    if(isset($_FILES['file']) && !empty($_FILES['file']) ){
+                        $file = $_FILES['file'];
+                        $fileName = md5(getRandChar(3).$file['name']);
+                        $result = $this->uploadProductImage($id,$file,$fileName);
+                    }else{
                         $count = 0;
                     }
                     break;
@@ -59,13 +69,12 @@ class Upload
             echo "not post";
         }
     }
-    //上传head_image
-    private function uploadHeadImage($id,$file,$type=1){
+    //上传thmem head_image/image
+    private function uploadHeadImage($id,$file,$fileName,$type=1){
         $info = ThemeModel::get($id);
         if(!$info){
             return "error";
         }
-        $fileName = md5($file['name']);
         $date = date('Ymd');
         $fileType = $file['type'];
         $fileTypeArr = explode('/',$fileType);
@@ -85,6 +94,24 @@ class Upload
             return $filePath2;
         }
     }
-
+    //上传商品图片
+    private function uploadProductImage($id,$file,$fileName){
+        $info = ProductModel::get($id);
+        if(!$info){
+            return "error";
+        }
+        $date = date('Ymd');
+        $fileType = $file['type'];
+        $fileTypeArr = explode('/',$fileType);
+        //插入数据库
+        $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
+        $productModel = new ProductModel;
+        $ret = $productModel->where('id',$id)
+            ->update(['main_img_url'=>$filePath2]);
+        if(!$ret){
+            return "error";
+        }
+        return $filePath2;
+    }
 
 }

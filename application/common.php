@@ -67,7 +67,7 @@ function curl_post_raw($url,$rawData){
     curl_close($ch);
     return ($data);
 }
-
+//获取随机数
 function getRandChar($length){
     $str = null;
     $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
