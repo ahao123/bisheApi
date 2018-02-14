@@ -70,6 +70,7 @@ class Upload
                         $count = 0;
                     }
                     break;
+
                 default:
                     $count = 0;
             }
