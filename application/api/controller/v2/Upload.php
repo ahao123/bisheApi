@@ -11,6 +11,7 @@ namespace app\api\controller\v2;
 use think\Request;
 use app\api\model\Theme as ThemeModel;
 use app\api\model\Product as ProductModel;
+use app\api\model\Category as CategoryModel;
 
 class Upload
 {
@@ -51,6 +52,19 @@ class Upload
                             $result = $this->uploadProductImage($id,$file,$fileName,'add');
                         }else{
                             $result = $this->uploadProductImage($id,$file,$fileName);
+                        }
+                    }else{
+                        $count = 0;
+                    }
+                    break;
+                case 4://分类图片
+                    if(isset($_FILES['file']) && !empty($_FILES['file']) ){
+                        $file = $_FILES['file'];
+                        $fileName = md5(getRandChar(3).$file['name']);
+                        if(isset($_POST['type']) && $_POST['type'] == "add"){
+                            $result = $this->uploadCategoryImage($id,$file,$fileName,'add');
+                        }else{
+                            $result = $this->uploadCategoryImage($id,$file,$fileName);
                         }
                     }else{
                         $count = 0;
@@ -106,7 +120,6 @@ class Upload
         $fileTypeArr = explode('/',$fileType);
         //插入数据库
         $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
-
         if($type == "edit"){
             $info = ProductModel::get($id);
             if(!$info){
@@ -119,7 +132,27 @@ class Upload
                 return "error";
             }
         }
-
+        return $filePath2;
+    }
+    //上传分类图片
+    private function uploadCategoryImage($id,$file,$fileName,$type="edit"){
+        $date = date('Ymd');
+        $fileType = $file['type'];
+        $fileTypeArr = explode('/',$fileType);
+        //插入数据库
+        $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
+        if($type == "edit"){
+            $info = CategoryModel::get($id);
+            if(!$info){
+                return "error";
+            }
+            $categoryModel = new CategoryModel;
+            $ret = $categoryModel->where('id',$id)
+                ->update(['topic_img'=>$filePath2]);
+            if(!$ret){
+                return "error";
+            }
+        }
         return $filePath2;
     }
 
