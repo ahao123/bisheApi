@@ -8,12 +8,13 @@
 
 namespace app\api\model;
 
-
-use think\Db;
-
 class Product extends BaseModel
 {
     protected $hidden = ['delete_time','update_time','create_time','pivot'];
+
+    public function getMainImgUrlAttr($value,$data){
+        return $this->prefixImgUrl($value,$data);
+    }
 
     public function imgs(){
         return $this->hasMany('ProductImage','product_id','id');
