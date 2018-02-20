@@ -40,7 +40,7 @@ class Product
         ( new IDMustBePositiveInt() )->goCheck();
         $product = ProductModel::getProductDetail($id);
         if(!$product){
-            throw new DataException();
+            throw new DataException([]);
         }
         return $product;
     }

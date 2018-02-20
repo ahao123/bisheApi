@@ -9,9 +9,19 @@
 namespace app\api\model;
 
 
+use think\Db;
+
 class Product extends BaseModel
 {
     protected $hidden = ['delete_time','update_time','create_time','pivot'];
+
+    public function imgs(){
+        return $this->hasMany('ProductImage','product_id','id');
+    }
+
+    public function property(){
+        return $this->hasMany('ProductProperty','product_id','id');
+    }
 
     public static function getMostRecent($count){
         return self::limit($count)
@@ -30,14 +40,18 @@ class Product extends BaseModel
         //根据productImage的order排序
 //        $product = self::with('imgs,property')
 //            ->find($id);
+
         $product = self::with([
             'imgs' => function($query){
-                $query->with('imgUrl')
-                    ->order('order');
+                    $query->where('status',1)
+                        ->order('order');
             }
         ])
-            ->with(['property'])
+            ->with(['property' => function($query){
+                    $query->where('status',1);
+            }])
             ->find($id);
+
         return $product;
     }
 }
