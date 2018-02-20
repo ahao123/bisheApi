@@ -25,7 +25,7 @@ class Product
         $products = $products->hidden(['summary']);
         return $products;
     }
-    //获取分类
+    //获取分类的商品
     public function getAllInGategory($id){
         ( new IDMustBePositiveInt() )->goCheck();
         $products = ProductModel::getProductByCategoryID($id);

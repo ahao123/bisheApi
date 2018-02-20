@@ -13,4 +13,7 @@ class Category extends BaseModel
 {
     protected $hidden = ['update_time','description'];
 
+    public function getTopicImgAttr($value,$data){
+        return config('setting.img_prefix').$value;
+    }
 }

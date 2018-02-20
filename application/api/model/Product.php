@@ -25,4 +25,5 @@ class Product extends BaseModel
             ->select();
         return $products;
     }
+
 }
