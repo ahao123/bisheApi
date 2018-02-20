@@ -13,7 +13,6 @@ class Product extends BaseModel
     protected $hidden = ['delete_time','update_time','create_time','pivot'];
 
     public function getMainImgUrlAttr($value,$data){
-//        return $this->prefixImgUrl($value,$data);
         return config('setting.img_prefix').$value;
     }
 

@@ -13,6 +13,10 @@ class ProductImage extends BaseModel
 {
     protected $hidden = ['img_id','product_id'];
 
+    public function getImgAttr($value,$data){
+        return config('setting.img_prefix').$value;
+    }
+
 //    public function imgUrl(){
 //        return $this->belongsTo('Image','img_id','id');
 //    }
