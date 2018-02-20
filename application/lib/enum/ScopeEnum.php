@@ -11,7 +11,7 @@ namespace app\lib\enum;
 
 class ScopeEnum
 {
-    const User = 16;
+    const User = 16;//用户
 
     const Super = 32;
 }

@@ -38,6 +38,7 @@ class UserToken extends Token
         }
         $loginFail = array_key_exists('errcode',$wxResult);
         if($loginFail){
+            //失败
             $this->processLoginError($wxResult);
         }else{
             //成功

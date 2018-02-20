@@ -18,6 +18,7 @@ use think\Request;
 
 class Token
 {
+    //生成令牌
     public static function generateToken(){
         //32个字符组成随机字符窜
         $randChar = getRandChar(32);
