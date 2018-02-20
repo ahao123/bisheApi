@@ -28,3 +28,6 @@ Route::get('api/:version/product/recent','api/:version.Product/getRecent');//最
 Route::get('api/:version/category/all','api/:version.Category/getAllCategories');
 
 Route::post('api/:version/token/user','api/:version.Token/getToken');
+
+Route::post('api/:version/address','api/:version.Address/createOrUpdateAddress');
+Route::get('api/:version/address','api/:version.Address/getUserAddress');
