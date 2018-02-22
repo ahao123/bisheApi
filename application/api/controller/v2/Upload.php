@@ -181,19 +181,20 @@ class Upload
             if(!$info){
                 return "error";
             }
-            $categoryModel = new CategoryModel;
+            $categoryModel = new ProductImage;
             $ret = $categoryModel->where('id',$id)
-                ->update(['img'=>$filePath2]);
-            if(!$ret){
-                return "error";
-            }
-        }else{
-            $categoryModel = new CategoryModel;
-            $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
+                ->update(['img'=>$filePath2,'product_id'=>$product_id]);
             if(!$ret){
                 return "error";
             }
         }
+//        else{
+//            $categoryModel = new CategoryModel;
+//            $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
+//            if(!$ret){
+//                return "error";
+//            }
+//        }
         return $filePath2;
     }
 }
