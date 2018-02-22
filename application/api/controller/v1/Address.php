@@ -34,7 +34,7 @@ class Address extends BaseController
         $uid = Token::getCurentUid();
         $user = UserModel::get($uid);
         if(!$user){
-            throw new UserException();
+            throw new UserException([]);
         }
         $dataArray = $validate->getDataByRule( input('post.') );
 

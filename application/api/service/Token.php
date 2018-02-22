@@ -40,7 +40,7 @@ class Token
 
         $vars = Cache::get($token);
         if(!$vars){
-            throw new TokenException();
+            throw new TokenException([]);
         }
         else{
             if(!is_array($vars)){
@@ -63,10 +63,10 @@ class Token
             if($scope >= ScopeEnum::User){
                 return true;
             }else{
-                throw new ForbiddenException();
+                throw new ForbiddenException([]);
             }
         }else{
-            throw new TokenException();
+            throw new TokenException([]);
         }
     }
     /*
@@ -78,7 +78,7 @@ class Token
             if($scope == ScopeEnum::User){
                 return true;
             }else{
-                throw new ForbiddenException();
+                throw new ForbiddenException([]);
             }
         }else{
             throw new TokenException();
