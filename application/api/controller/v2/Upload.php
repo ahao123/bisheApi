@@ -187,8 +187,7 @@ class Upload
             if(!$ret){
                 return "error";
             }
-        }
-        else{
+        }else{
             $categoryModel = new ProductImage;
             $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
             if(!$ret){
