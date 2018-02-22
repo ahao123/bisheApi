@@ -78,7 +78,7 @@ class Upload
                         if(isset($_POST['type']) && $_POST['type'] == "add"){
                             $result = $this->uploadProductInfoImage($id,$file,$fileName,$_POST['product_id'],'add');
                         }else{
-//                            $result = $this->uploadCategoryImage($id,$file,$fileName);
+                            $result = $this->uploadCategoryImage($id,$file,$fileName);
                         }
                     }else{
                         $count = 0;
