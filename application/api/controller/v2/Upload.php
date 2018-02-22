@@ -76,7 +76,7 @@ class Upload
                         $file = $_FILES['file'];
                         $fileName = md5(getRandChar(3).$file['name']);
                         if(isset($_POST['type']) && $_POST['type'] == "add"){
-                            $result = $this->uploadProductInfoImage($id,$file,$fileName,'add');
+                            $result = $this->uploadProductInfoImage($id,$file,$fileName,$_POST['product_id'],'add');
                         }else{
 //                            $result = $this->uploadCategoryImage($id,$file,$fileName);
                         }
@@ -169,8 +169,8 @@ class Upload
         }
         return $filePath2;
     }
-
-    private function uploadProductInfoImage($id,$file,$fileName,$type="edit"){
+    //上传图片详情照片
+    private function uploadProductInfoImage($id,$file,$fileName,$product_id,$type="edit"){
         $date = date('Ymd');
         $fileType = $file['type'];
         $fileTypeArr = explode('/',$fileType);
@@ -184,6 +184,12 @@ class Upload
             $categoryModel = new CategoryModel;
             $ret = $categoryModel->where('id',$id)
                 ->update(['img'=>$filePath2]);
+            if(!$ret){
+                return "error";
+            }
+        }else{
+            $categoryModel = new CategoryModel;
+            $ret = $categoryModel->update(['img'=>$filePath2,'product_id'=>$product_id]);
             if(!$ret){
                 return "error";
             }
