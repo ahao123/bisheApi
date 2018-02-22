@@ -188,13 +188,13 @@ class Upload
                 return "error";
             }
         }
-//        else{
-//            $categoryModel = new CategoryModel;
-//            $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
-//            if(!$ret){
-//                return "error";
-//            }
-//        }
+        else{
+            $categoryModel = new ProductImage;
+            $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
+            if(!$ret){
+                return "error";
+            }
+        }
         return $filePath2;
     }
 }
