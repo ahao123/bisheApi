@@ -8,6 +8,7 @@
 
 namespace app\api\controller\v2;
 
+use app\api\model\ProductImage;
 use think\Request;
 use app\api\model\Theme as ThemeModel;
 use app\api\model\Product as ProductModel;
@@ -70,7 +71,19 @@ class Upload
                         $count = 0;
                     }
                     break;
-
+                case 5://商品详细图片
+                    if(isset($_FILES['file']) && !empty($_FILES['file']) ){
+                        $file = $_FILES['file'];
+                        $fileName = md5(getRandChar(3).$file['name']);
+                        if(isset($_POST['type']) && $_POST['type'] == "add"){
+                            $result = $this->uploadProductInfoImage($id,$file,$fileName,'add');
+                        }else{
+//                            $result = $this->uploadCategoryImage($id,$file,$fileName);
+                        }
+                    }else{
+                        $count = 0;
+                    }
+                    break;
                 default:
                     $count = 0;
             }
@@ -157,4 +170,24 @@ class Upload
         return $filePath2;
     }
 
+    private function uploadProductInfoImage($id,$file,$fileName,$type="edit"){
+        $date = date('Ymd');
+        $fileType = $file['type'];
+        $fileTypeArr = explode('/',$fileType);
+        //插入数据库
+        $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
+        if($type == "edit"){
+            $info = ProductImage::get($id);
+            if(!$info){
+                return "error";
+            }
+            $categoryModel = new CategoryModel;
+            $ret = $categoryModel->where('id',$id)
+                ->update(['img'=>$filePath2]);
+            if(!$ret){
+                return "error";
+            }
+        }
+        return $filePath2;
+    }
 }
