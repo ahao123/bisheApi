@@ -189,7 +189,7 @@ class Upload
             }
         }else{
             $categoryModel = new CategoryModel;
-            $ret = $categoryModel->update(['img'=>$filePath2,'product_id'=>$product_id]);
+            $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
             if(!$ret){
                 return "error";
             }
