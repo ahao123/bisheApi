@@ -51,7 +51,7 @@ class Pay
         $order = OrderModel::where('id','=',$this->orderID)
             ->find();
         if(!$order){
-            throw new OrderException();
+            throw new OrderException([]);
         }
         if(!Token::isValidOperate($order->user_id)){
             throw new TokenException([
@@ -73,7 +73,7 @@ class Pay
     private function makeWxOrder($totalPrice){
         $openid = Token::getCurrentTokenVar('openid');
         if(!$openid){
-            throw new TokenException();
+            throw new TokenException([]);
         }
         $wxOrderData = new \WxPayUnifiedOrder();
         $wxOrderData->SetOut_trade_no($this->orderNO);
