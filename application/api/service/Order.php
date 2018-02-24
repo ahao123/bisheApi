@@ -69,6 +69,7 @@ class Order
             $order->snap_name = $snap['snapName'];
             $order->snap_address = $snap['snapAddress'];
             $order->snap_items = json_encode($snap['pStatus']);
+            $order->create_time = date('Y-m-d H:i:s');
             $order->save();
 
             $orderID = $order->id;

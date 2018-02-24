@@ -13,7 +13,7 @@ class Order extends BaseModel
 {
     protected $hidden = ['user_id','update_time'];
 
-    protected $autoWriteTimestamp = true;//自动写入时间
+//    protected $autoWriteTimestamp = true;//自动写入时间
 
     //读取器
     public function getSnapItemsAttr($value){
