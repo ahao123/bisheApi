@@ -7,5 +7,5 @@
  */
 return [
     'token_salt' => 'sasdasdasjlskfd',
-    'pay_back_url' => 'http://z.cn/api/v1/pay_notify',
+    'pay_back_url' => 'http://bisheapi.project.cn/api/v1/pay_notify',
 ];

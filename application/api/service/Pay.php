@@ -91,7 +91,7 @@ class Pay
             Log::record($wxOrder,'error');
             Log::record('获取预支付订单失败','error');
         }
-        //prepay_id
+        //更新prepay_id
         $this->recordPreOrder($wxOrder);
         //返回小程序需要的微信支付参数
         $signature = $this->sign($wxOrder);

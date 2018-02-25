@@ -79,6 +79,7 @@ class Order
             }
             $orderProduct = new OrderProduct();
             $orderProduct->saveAll($this->oProducts);
+//            $aa = OrderProduct::getLastSql();
             Db::commit();
             return [
                 'order_no' => $orderNo,
