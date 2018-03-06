@@ -43,7 +43,7 @@ class Order extends BaseController
         $status = $order->place($uid,$products);
         return $status;
     }
-
+    //获取订单信息
     public function getSummaryByUser($page = 1,$size = 15){
         ( new PageParameter() )->goCheck();
         $uid = TokenService::getCurentUid();
@@ -65,7 +65,7 @@ class Order extends BaseController
         ( new IDMustBePositiveInt() )->goCheck();
         $orderDetail = OrderModel::get($id);
         if(!$orderDetail){
-            throw new OrderException();
+            throw new OrderException([]);
         }
         return $orderDetail->hidden(['prepay_id']);
     }
