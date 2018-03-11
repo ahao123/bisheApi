@@ -8,6 +8,7 @@
 
 namespace app\api\controller\v2;
 
+use app\api\model\BannerItem;
 use app\api\model\ProductImage;
 use think\Request;
 use app\api\model\Theme as ThemeModel;
@@ -79,6 +80,19 @@ class Upload
                             $result = $this->uploadProductInfoImage($id,$file,$fileName,$_POST['product_id'],'add');
                         }else{
                             $result = $this->uploadProductInfoImage($id,$file,$fileName,$_POST['product_id']);
+                        }
+                    }else{
+                        $count = 0;
+                    }
+                    break;
+                case 6://幻灯片图片
+                    if(isset($_FILES['file']) && !empty($_FILES['file']) ){
+                        $file = $_FILES['file'];
+                        $fileName = md5(getRandChar(3).$file['name']);
+                        if(isset($_POST['type']) && $_POST['type'] == "add"){
+                            $result = $this->uploadBanneritemimage($id,$file,$fileName,'add');
+                        }else{
+                            $result = $this->uploadBanneritemimage($id,$file,$fileName);
                         }
                     }else{
                         $count = 0;
@@ -190,6 +204,33 @@ class Upload
         }else{
             $categoryModel = new ProductImage;
             $ret = $categoryModel->save(['img'=>$filePath2,'product_id'=>$product_id]);
+            if(!$ret){
+                return "error";
+            }
+        }
+        return $filePath2;
+    }
+    //上传幻灯片
+    private function uploadBanneritemimage($id,$file,$fileName,$type="edit"){
+        $date = date('Ymd');
+        $fileType = $file['type'];
+        $fileTypeArr = explode('/',$fileType);
+        //插入数据库
+        $filePath2 = "/upload/image/".$date."/".$fileName.".".array_pop($fileTypeArr);
+        if($type == "edit"){
+            $info = BannerItem::get($id);
+            if(!$info){
+                return "error";
+            }
+            $bannerModel = new BannerItem();
+            $ret = $bannerModel->where('id',$id)
+                ->update(['img'=>$filePath2]);
+            if(!$ret){
+                return "error";
+            }
+        }else{
+            $bannerModel = new BannerItem();
+            $ret = $bannerModel->save(['img'=>$filePath2]);
             if(!$ret){
                 return "error";
             }
