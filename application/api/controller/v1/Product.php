@@ -29,8 +29,8 @@ class Product
     public function getHot($count = 4){
         (new Count() )->goCheck();
         $products = ProductModel::getHotProduct($count);
-        if($products->isEmpty() ){
-            throw new DataException();
+        if(empty($products) ){
+            throw new DataException([]);
         }
         $products = $products->hidden(['summary']);
         return $products;
