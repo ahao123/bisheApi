@@ -31,6 +31,13 @@ class Product extends BaseModel
             ->select();
     }
 
+    public static function getHotProduct($count){
+        return self::limit($count)
+            ->where(['is_hot'=>1])
+            ->order('create_time desc')
+            ->select();
+    }
+
     public static function getProductByCategoryID($GategoryID){
         $products = self::where('category_id','=',$GategoryID)
             ->select();

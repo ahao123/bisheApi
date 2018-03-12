@@ -25,6 +25,16 @@ class Product
         $products = $products->hidden(['summary']);
         return $products;
     }
+    //最热商品
+    public function getHot($count = 4){
+        (new Count() )->goCheck();
+        $products = ProductModel::getHotProduct($count);
+        if($products->isEmpty() ){
+            throw new DataException();
+        }
+        $products = $products->hidden(['summary']);
+        return $products;
+    }
     //获取分类的商品
     public function getAllInGategory($id){
         ( new IDMustBePositiveInt() )->goCheck();
@@ -34,7 +44,6 @@ class Product
         }
         return $products;
     }
-
     //商品详情
     public function getOne($id){
         ( new IDMustBePositiveInt() )->goCheck();
