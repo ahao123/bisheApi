@@ -40,7 +40,7 @@ class Product
         ( new IDMustBePositiveInt() )->goCheck();
         $products = ProductModel::getProductByCategoryID($id);
         if( $products->isEmpty() ){
-            throw new DataException();
+            throw new DataException([]);
         }
         return $products;
     }
